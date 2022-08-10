@@ -2,3 +2,39 @@
   font-size: 5vh;
   color: blue;
 }
+
+.name {
+  width: 50vw;
+  box-shadow: 10px 10px 15px #00000012;
+  border-radius: 2vh;
+  text-align: right;
+  background-color: aliceblue;
+  font-size: 4vh;
+  font-family: "Oleo Script Swash Caps", cursive;
+  border: 2px solid #ff00ff;
+}
+
+.normal-text {
+  width: fit-content;
+  font-family: "Oleo Script Swash Caps", cursive;
+  font-size: 3vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.red-box {
+  height: 5vh;
+  width: 5vw;
+  background-color: #ff00ff;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
