@@ -1,0 +1,165 @@
+.simple-button {
+  min-height: 5vh;
+  width: fit-content;
+  font-family: "Roboto", sans-serif;
+  background-color: #106fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1vh 2vw 1vh 2vw;
+  color: white;
+  font-size: 2vh;
+  border-radius: 1vh;
+  cursor: pointer;
+  margin: 2vh;
+  transition: box-shadow 0.5s;
+}
+
+.simple-button:hover {
+  box-shadow: 5px 5px 15px #00000055;
+  transition: box-shadow 0.5s;
+}
+
+.align-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-layout {
+  min-height: 5vh;
+  width: fit-content;
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+  padding: 1vh 2vw 1vh 2vw;
+  color: #106fff;
+  border: 2px solid #106fff;
+  font-size: 2vh;
+  border-radius: 1vh;
+  cursor: pointer;
+  margin: 1vh;
+  font-weight: 600;
+}
+
+.stock-button {
+  min-height: 4vh;
+  width: fit-content;
+  font-family: "Poppins", sans-serif;
+  background-color: #106fff;
+  padding: 1vh 2vw 1vh 2vw;
+  color: white;
+  font-size: 2vh;
+  border-radius: 4vh;
+  cursor: pointer;
+  margin: 1vh;
+  outline: 0;
+  border: 2px solid #106fff;
+}
+
+.stock-button:hover {
+  background-color: #0c62e5;
+  box-shadow: 0px 0px 10px #00000055;
+}
+
+.stock-button:active {
+  background-color: #0050c9;
+}
+
+.stock-button:focus {
+  background-color: #106fff;
+  border: 3px double white;
+}
+
+.horizontal-align {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.s1-row {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row;
+  justify-content: space-around;
+}
+
+.s1-e1 {
+  height: 5vh;
+  background-color: #0050c9;
+  flex-grow: 1;
+}
+
+.s1-e2 {
+  height: 5vh;
+  background-color: aqua;
+  flex-grow: 2;
+}
+
+.s2-e1 {
+  height: 5vh;
+  width: 40vw;
+  background-color: blueviolet;
+  margin: 0 auto 0 auto;
+}
+
+.s3-e1 {
+  height: 5vh;
+  background-color: aquamarine;
+  flex-grow: 1;
+}
+
+.s3-e2 {
+  height: 5vh;
+  background-color: red;
+  flex-grow: 1;
+}
+.s3-e3 {
+  height: 5vh;
+  background-color: magenta;
+  flex-grow: 1;
+}
+
+.grid-container {
+  margin: 2vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 10vh 10vh 10vh;
+}
+
+.cell-1 {
+  background-color: purple;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.cell-2 {
+  background-color: blue;
+  grid-column: 2 / span 2;
+  grid-row: 1 / span 1;
+}
+
+.cell-3 {
+  background-color: pink;
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+}
+
+.cell-4 {
+  background-color: red;
+  grid-column: 1 / span 1;
+  grid-row: 3 / span 1;
+}
+
+.cell-5 {
+  background-color: green;
+  grid-column: 2 / span 1;
+  grid-row: 3 / span 1;
+}
+
+.cell-6 {
+  background-color: orange;
+  grid-column: 3 / span 1;
+  grid-row: 3 / span 1;
+}
