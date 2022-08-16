@@ -58,3 +58,33 @@
   grid-row: 3 / span 1;
   grid-column: 3 / span 2;
 }
+
+.input-container {
+  border: 1px solid grey;
+  border-radius: 1vh;
+  padding: 1vh;
+  outline: none;
+}
+
+.label {
+  margin: 0;
+}
+
+.outermost {
+  background-color: pink;
+  /* height: fit-content; */
+  width: fit-content;
+}
+
+.middle {
+  background-color: blue;
+  height: 30vh;
+  width: 30vh;
+  margin: 1vh 2vh 4vh 19vh;
+}
+
+.innermost {
+  background-color: purple;
+  height: fit-content;
+  width: fit-content;
+}
