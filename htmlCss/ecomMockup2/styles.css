@@ -1,0 +1,39 @@
+body {
+  display: grid;
+  grid-template-columns: 1fr 2fr 5fr;
+  grid-template-rows: 10vh 45vh 45vh;
+  margin: 0;
+}
+
+.cont-1 {
+  background-color: red;
+  height: 10vh;
+  width: 100%;
+  grid-column: 1 / span 3;
+}
+
+.cont-2 {
+  background-color: yellow;
+  height: 100%;
+  width: 100%;
+  grid-row: 2 / span 2;
+}
+
+.cont-3 {
+  background-color: pink;
+  height: 100%;
+  width: 100%;
+  grid-column: 2 / span 2;
+}
+
+.cont-4 {
+  background-color: green;
+  height: 100%;
+  width: 100%;
+}
+
+.cont-5 {
+  background-color: brown;
+  height: 100%;
+  width: 100%;
+}
