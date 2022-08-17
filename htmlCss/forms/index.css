@@ -1,0 +1,70 @@
+@import url("./global.css");
+
+.form-container {
+  height: 70vh;
+  width: 50vw;
+  background-color: white;
+  border: 0.2vh solid grey;
+  /* border: #border-width #border-type #border-color; */
+  border-radius: 2vh;
+  margin: 15vh auto 15vh auto;
+  /* margin: up right down left; */
+  padding: 2vh 1vh 2vh 1vh;
+  /* padding: up right down left; */
+  box-shadow: 0 0 10px gray;
+}
+
+.title-text {
+  font-family: var(--font-fam);
+  margin: var(--sm-margin);
+  font-size: 2.3vh;
+}
+
+/* * here i have defined the 
+*    alignment for label and input box */
+.vertical-align {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.label {
+  font-family: var(--font-fam);
+  color: var(--dark);
+  margin: 1vh 0;
+}
+
+.input-box-text {
+  height: 4vh;
+  width: 80%;
+  font-family: var(--font-fam);
+  font-size: 2vh;
+  padding: 0.5vh 1.5vh;
+  border: 0.2vh solid #e1e1e1;
+  border-radius: 1vh;
+  color: var(--dark);
+  outline: none;
+  transition: all 0.5s;
+}
+
+.input-box-text:focus {
+  border: 0.2vh solid var(--dark);
+  transition: all 0.5s;
+}
+
+.form-fields {
+  margin: 2vh;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.select-box {
+  height: 5vh;
+  width: 80%;
+  font-family: var(--font-fam);
+  font-size: 2vh;
+  background-color: white;
+  border: 0.2vh solid #e1e1e1;
+  border-radius: 0.5vh;
+  color: var(--dark);
+}

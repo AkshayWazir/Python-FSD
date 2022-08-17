@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <script>
+      function actionForm(params) {
+        const form = document.getElementById("data-form");
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+        });
+      }
+    </script>
+    <div class="form-container" action="action()">
+      <p class="title-text">User Detail Form</p>
+      <form class="form-fields" id="data-form">
+        <span class="vertical-align">
+          <label for="id-name" class="label">Full Name</label>
+          <input
+            id="id-name"
+            name="user-name"
+            type="text"
+            placeholder="Enter your full name here"
+            class="input-box-text"
+            required
+          />
+        </span>
+        <span class="vertical-align">
+          <label for="id-name" class="label">Select Country</label>
+          <select
+            id="id-name"
+            name="user-name"
+            type="text"
+            placeholder="Enter your full name here"
+            class="select-box"
+          >
+            <option value="india">India</option>
+            <option value="usa">USA</option>
+            <option value="brazil">Brazil</option>
+            <option value="russia">Russia</option>
+          </select>
+        </span>
+        <span class="vertical-align">
+          <label for="id-name" class="label">Bio</label>
+          <textarea
+            id="id-name"
+            name="user-name"
+            type="text"
+            placeholder="Enter your full name here"
+            class="input-box-text"
+          ></textarea>
+        </span>
+        <span class="vertical-align">
+          <label for="id-name" class="label">ID Number</label>
+          <input
+            id="id-name"
+            name="user-name"
+            type="number"
+            placeholder="Enter your full name here"
+            class="input-box-text"
+          />
+        </span>
+        <span class="vertical-align">
+          <label for="id-name" class="label">Upload picture</label>
+          <input
+            id="id-name"
+            name="user-name"
+            type="file"
+            placeholder="Enter your full name here"
+            class="input-box-text"
+          />
+        </span>
+        <span class="vertical-align">
+          <label for="id-name" class="label">Multiple selection</label>
+          <select
+            id="id-name"
+            name="user-name"
+            type="text"
+            placeholder="Enter your full name here"
+            class="select-box"
+            multiple
+            style="height: fit-content"
+          >
+            <option value="india">India</option>
+            <option value="usa">USA</option>
+            <option value="brazil">Brazil</option>
+            <option value="russia">Russia</option>
+          </select>
+        </span>
+        <span class="vertical-align">
+          <label for="id-name" class="label">Check boxes</label>
+          <input type="" />
+        </span>
+        <input type="submit" value="Submit" onclick="actionForm()" />
+      </form>
+    </div>
+  </body>
+</html>
