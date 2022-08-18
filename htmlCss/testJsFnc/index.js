@@ -82,3 +82,43 @@ for (let key in createUser1("Akshay", 90)) {
 
 // ! Task 4
 // ? given a object with properties having mix of string and number. change the numeric property value to 5 times its original value
+
+// * copy primitive data type by value
+let val1 = "Akshay";
+let val2 = val1;
+
+// * copy data types by reference
+let obj1 = { name: "Akshay" };
+let obj2 = obj1;
+
+obj1.name = "Aditya";
+console.log(obj2);
+
+// * comparison by reference
+let a = {};
+let b = a;
+
+console.log("a and b are Equal ? ", a == b); // * compares two variables by reference
+console.log(a === b); // * this compares two variables by value
+
+let c = {};
+let d = {};
+console.log(c == d);
+
+// * Now question is how to copy this object
+// ? simple cloning
+let obj3 = { name: "John", age: 12 };
+let obj4 = Object.assign({}, obj3);
+console.log("obj3 and obj4 are equal ? :", obj3 == obj4);
+console.log(obj3);
+console.log(obj4);
+
+let nesObj = {
+  name: "John",
+  age: 45,
+  job: {
+    title: "Analyst",
+    salary: 200,
+  },
+};
+console.log(Object.assign({}, nesObj));
