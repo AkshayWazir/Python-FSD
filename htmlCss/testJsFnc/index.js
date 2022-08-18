@@ -178,7 +178,6 @@ let arr = [1, 2, 3, 4, 5, 6, 7, 8],
   target = 3;
 
 function binarySearch(start, end, target) {
-  debugger;
   let mid = parseInt((start + end) / 2);
   if (start === end) {
     return arr[start] === target ? start : -1;
