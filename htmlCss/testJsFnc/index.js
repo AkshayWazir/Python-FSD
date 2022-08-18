@@ -175,21 +175,24 @@ console.log(factorial(4));
 
 // ? find number inside of a sorted array using binary search
 let arr = [1, 2, 3, 4, 5, 6, 7, 8],
-  target = 7;
+  target = 3;
 
-function binarySearch(start, end) {
+function binarySearch(start, end, target) {
+  debugger;
   let mid = parseInt((start + end) / 2);
   if (start === end) {
-    return start;
+    return arr[start] === target ? start : -1;
   } else if (arr[mid] === target) {
     return mid;
-  } else if (arr[mid] < target) {
-    return binarySearch(mid + 1, end);
+  } else if (arr[mid] <= target) {
+    return binarySearch(mid + 1, end, target);
   } else if (arr[mid] > target) {
-    return binarySearch(start, mid);
+    return binarySearch(start, mid, target);
   } else {
     return -1;
   }
 }
 
-console.log(binarySearch(0, 7));
+const searchBinary = (arr, target) => binarySearch(arr.length > 0 ? 0 : -1, arr.length - 1, target);
+
+console.log(searchBinary(arr, 6));
