@@ -75,13 +75,33 @@ for (let key in createUser1("Akshay", 90)) {
 
 // ! Task 2
 // ? write a function "isEmpty(obj)" which returns "true" if the object has no properties otherwise "false"
+function isEmpty(obj) {
+  return Object.keys(obj).length === 0;
+}
+
+const isEmpty2 = (obj) => Object.keys(obj).length === 0;
 
 // ! Task 3
 // ? we have an object with each property storing values of user salary using key value pair with key as user name and value as salary
 // ? make a function to return the sum of the salaries of all the user
 
+const salSum = (obj) => {
+  let s = 0;
+  for (let val of Object.values(obj)) {
+    s += val;
+  }
+  return s;
+};
+
 // ! Task 4
 // ? given a object with properties having mix of string and number. change the numeric property value to 5 times its original value
+function changeVals(obj) {
+  for (let key in obj) {
+    if (typeof obj[key] === "number") {
+      obj[key] *= 5;
+    }
+  }
+}
 
 // * copy primitive data type by value
 let val1 = "Akshay";
@@ -122,3 +142,55 @@ let nesObj = {
   },
 };
 console.log(Object.assign({}, nesObj));
+
+// * Function
+function functionName(params) {
+  // * body
+}
+
+const var1 = (param, param1) => {
+  // body
+};
+
+var1(var1, 12);
+
+// * you have been given two sorted arrays "a" and "b"
+// * you have to merge these two sorted arrays into one sorted array
+function mergeSortedArray(arr1, arr2) {
+  return [...arr1, ...arr2].sort();
+}
+
+let ob = { name: "Arjun", age: 78 };
+let ob1 = { add: "asomss", value: 878 };
+console.log({ ...ob, ...ob1 });
+
+console.log(mergeSortedArray([3, 5, 7, 9], [8, 6, 4, 1]));
+
+// ? Find the factorial of a number
+function factorial(num) {
+  return num === 1 ? num : num * factorial(num - 1);
+}
+
+console.log(factorial(4));
+
+// ? find number inside of a sorted array using binary search
+let arr = [1, 2, 3, 4, 5, 6, 7, 8],
+  target = 7;
+
+function binarySearch(start, end) {
+  debugger;
+  let mid = parseInt((start + end) / 2);
+  if (start === end) {
+    return start;
+  } else if (arr[mid] === target) {
+    return mid;
+  } else if (arr[mid] < target) {
+    return binarySearch(mid + 1, end);
+  } else if (arr[mid] > target) {
+    return binarySearch(start, mid);
+  } else {
+    return -1;
+  }
+}
+
+console.log(binarySearch(0, 7));
