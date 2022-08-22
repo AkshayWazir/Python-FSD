@@ -1,0 +1,40 @@
+@import url("../../../App.css");
+
+.shop-item-container {
+  height: 20vh;
+  width: 10vw;
+  border-radius: 1vh;
+  margin: 1vh;
+  border: 2px solid grey;
+  display: grid;
+  grid-template-columns: 75% 25%;
+  grid-template-rows: 25% 25% 25% 25%;
+}
+
+.shop-item-title {
+  grid-column: 1 / span 2;
+  font-family: var(--font);
+  margin: 1vh;
+}
+
+.shop-item-price {
+  grid-column: 1 / span 1;
+  grid-row: 4 / span 1;
+  font-family: var(--font);
+  margin: 1vh;
+}
+
+.shop-item-button {
+  grid-column: 2 / span 1;
+  grid-row: 4 / span 1;
+  font-family: var(--font);
+  height: 3vh;
+  width: 3vh;
+  background-color: black;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 1ch;
+  font-size: 2vh;
+  margin: 1vh;
+}

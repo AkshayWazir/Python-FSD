@@ -1,4 +1,5 @@
 import React from "react";
+import ShopItem from "../../components/custom/shoppingItem";
 import { TopNavBar } from "../../components/shared";
 import "./styles.css";
 
@@ -16,7 +17,7 @@ export default function ShoppingDashboard(props) {
     <div className="shopDash-container">
       <TopNavBar sizeOfCart={0} />
       <div>
-        
+        <ShopItem />
       </div>
     </div>
   );
