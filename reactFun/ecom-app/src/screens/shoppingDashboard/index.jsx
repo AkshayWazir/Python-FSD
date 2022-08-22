@@ -5,7 +5,7 @@ import "./styles.css";
 export default function ShoppingDashboard(props) {
   return (
     <div className="shopDash-container">
-      <TopNavBar />
+      <TopNavBar sizeOfCart={0} />
     </div>
   );
 }
