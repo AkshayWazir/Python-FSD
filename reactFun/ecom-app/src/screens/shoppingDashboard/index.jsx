@@ -1,5 +1,5 @@
 import React from "react";
-import ShopItem from "../../components/custom/shoppingItem";
+import { ShoppingItem } from "../../components/custom";
 import { TopNavBar } from "../../components/shared";
 import "./styles.css";
 
@@ -16,8 +16,12 @@ export default function ShoppingDashboard(props) {
   return (
     <div className="shopDash-container">
       <TopNavBar sizeOfCart={0} />
-      <div>
-        <ShopItem />
+      <div className="grid-view">
+        {listOfProducts.map((item, index) => {
+          console.log(item);
+          console.log(index);
+          return <ShoppingItem title={item.name} price={item.price} />;
+        })}
       </div>
     </div>
   );
