@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { ShoppingDashboard } from "./screens";
+import ShoppingDashboard from "./shoppingDashboard";
 
 export default function App() {
   const renderPage = 1;

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { ShoppingItem } from "../../components/custom";
 import { TopNavBar } from "../../components/shared";
 import "./styles.css";
+import { addTwoNumbers } from "../test";
+import renderHello from "../test";
 
 export default function ShoppingDashboard(props) {
   const [cartState, setCartState] = useState(0);
