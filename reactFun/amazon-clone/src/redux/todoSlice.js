@@ -1,22 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const todosSlice = createSlice({
-  name: 'todos',
-  initialState: [],
+  name: "todos",
+  initialState: { value: 0, cartItems: [] },
   reducers: {
-    todoAdded(state, action) {
-      state.push({
-        id: action.payload.id,
-        text: action.payload.text,
-        completed: false
-      })
+    addCount(state, action) {
+      console.log("Reached here ");
+      state.value += action.payload;
     },
-    todoToggled(state, action) {
-      const todo = state.find(todo => todo.id === action.payload)
-      todo.completed = !todo.completed
-    }
-  }
-})
+    subCount(state, action) {
+      state.value -= 1;
+    },
+  },
+});
 
-export const { todoAdded, todoToggled } = todosSlice.actions
-export default todosSlice.reducer
+export const { addCount, subCount } = todosSlice.actions;
+export default todosSlice.reducer;
