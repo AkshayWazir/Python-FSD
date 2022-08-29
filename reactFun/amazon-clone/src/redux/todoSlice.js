@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const todosSlice = createSlice({
   name: "todos",
-  initialState: { value: 0, cartItems: [] },
+  initialState: { value: 0, text: "" },
   reducers: {
     addCount(state, action) {
       console.log("Reached here ");
@@ -11,8 +11,11 @@ const todosSlice = createSlice({
     subCount(state, action) {
       state.value -= 1;
     },
+    changeText(initialState, action) {
+      initialState.text = action.payload;
+    },
   },
 });
 
-export const { addCount, subCount } = todosSlice.actions;
+export const { addCount, subCount, changeText } = todosSlice.actions;
 export default todosSlice.reducer;
