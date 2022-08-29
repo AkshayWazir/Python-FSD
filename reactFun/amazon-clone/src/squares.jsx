@@ -1,7 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function DispSqu(props) {
-  const { count } = props;
+  const count = useSelector((store) => store.counter).value;
 
   function spreadingSquares(value) {
     let tempArr = [];
