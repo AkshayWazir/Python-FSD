@@ -1,0 +1,23 @@
+.the-box {
+  height: 30vh;
+  width: 40vw;
+  background-color: aqua;
+}
+
+@media screen and (max-width: 1224px) {
+  .the-box {
+    background-color: blue;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .the-box {
+    background-color: red;
+  }
+}
+
+@media screen and (max-height: 480px) {
+  .the-box {
+    background-color: red;
+  }
+}
