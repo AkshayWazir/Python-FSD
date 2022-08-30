@@ -6,9 +6,14 @@ export const fetchPublicApi = createAsyncThunk("data/fetchPublicApis", async () 
   return response.entries;
 });
 
+export const fetchPublicPopData = createAsyncThunk("data/publicPopData", async (params) => {
+  const response = await MakeRequest("https://datausa.io/api/data").get(params);
+  return response.data;
+});
+
 const publicApiSlice = createSlice({
   name: "PublicApisData",
-  initialState: { data: [] },
+  initialState: { data: [], populationData: [] },
   reducers: {
     updateData(state, action) {
       state.data = action.payload;
@@ -17,6 +22,9 @@ const publicApiSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchPublicApi.fulfilled, (state, action) => {
       state.data = action.payload;
+    });
+    builder.addCase(fetchPublicPopData.fulfilled, (state, action) => {
+      state.populationData = action.payload;
     });
   },
 });
