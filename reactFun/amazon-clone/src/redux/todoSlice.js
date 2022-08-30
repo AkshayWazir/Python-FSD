@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const todosSlice = createSlice({
-  name: "todos",
+  name: "globalState",
   initialState: { value: 0, text: "" },
   reducers: {
     addCount(state, action) {
