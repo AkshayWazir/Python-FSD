@@ -23,7 +23,15 @@ let menuData = [
   {
     title: "CUSTOMIZATION",
     option: [
-      { id: 6, label: "Segments", icon: DashboardIcon, notif: 2, action: () => {} },
+      {
+        id: 6,
+        label: "Segments",
+        icon: DashboardIcon,
+        notif: 2,
+        action: () => {
+          console.log("clicked here");
+        },
+      },
       { id: 7, label: "Theme", icon: DashboardIcon, notif: 0, action: () => {} },
     ],
   },
