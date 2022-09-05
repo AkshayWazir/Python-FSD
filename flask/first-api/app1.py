@@ -51,6 +51,11 @@ def getAllStores():
     return jsonify({"data": stores})
 
 
+@app.route("/store/<string:name>")
+def getStore(name):
+    return {'store-name': name}
+
+
 # ? get all the items from the store
 @app.route("/store/<int:storeId>/items")  # * {storeId: }
 def getAllItemsOfStore(storeId):
