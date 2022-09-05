@@ -32,10 +32,11 @@ def initiate():
 
 
 stores = [
-    {"name": "Raman Store",
+    {"id": 0,
+        "name": "Raman Store",
      "items": [
-         {"name": "Shirt", "qty": 56},
-         {"name": "Pants", "qty": 34}
+         {"id": 0, "name": "Shirt", "qty": 56},
+         {"id": 1, "name": "Pants", "qty": 34}
      ]
      }]
 
@@ -51,30 +52,29 @@ def getAllStores():
 
 
 # ? get all the items from the store
-@app.route("/store/items", methods=["POST"])  # * {storeId: }
-def getAllItemsOfStore():
-    requestObj = request.get_json()
+@app.route("/store/<int:storeId>/items")  # * {storeId: }
+def getAllItemsOfStore(storeId):
     for store in stores:
-        if store["name"] == requestObj["id"]:
+        if store["id"] == storeId:
             return jsonify({"data": store["items"]})
     return jsonify({"data": []})
 
 
 # ? get the quantity of specific item in the store
-@app.route("/store/item/qt", methods=["POST"])  # * {storeId: , itemId: }
-def getAllItemsOfStore():
-    requestObj = request.get_json()
+# * {storeId: , itemId: }
+@app.route("/store/<int:storeId>/item/<int:itemId>/qt")
+def getQuantityOfItemInStore(storeId, itemId):
     for store in stores:
-        if store["name"] == requestObj["storeId"]:
+        if store["id"] == storeId:
             for item in store["items"]:
-                if item["name"] == requestObj["itemId"]:
+                if item["id"] == itemId:
                     return jsonify({"data": item["qty"]})
-    return jsonify({"data": []})
+    return jsonify({"data": -1})
 
 
 # ? add a new store
 @app.route("/add/store")
-def getAllStores():
+def addNewStore():
     newStore = request.get_json()
     stores.append(newStore)
     return jsonify({"data": stores})
@@ -82,11 +82,14 @@ def getAllStores():
 
 # ? add a new item to specific store
 @app.route("/add/item")
-def getAllStores():
+def addItemToStore():
     reqObj = request.get_json()
     for i in range(len(stores)):
         if stores[i] == reqObj["storeId"]:
             stores[i]["items"].append(reqObj)
+
+# * write a edit api that takes id from the URL and updates the quantity to new passed values in
+# * post request body
 
 
 app.run(debug=True, port=5000)
