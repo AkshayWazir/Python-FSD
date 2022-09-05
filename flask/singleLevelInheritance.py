@@ -123,15 +123,18 @@
 
 
 from ast import Delete
+from os import access
 
 
 class Person():
-    def __init__(self, name, id) -> None:
+    def __init__(self, name, _id) -> None:
         self.name = name
-        self.id = id
+        self.id = _id
 
     def __str__(self) -> str:
         return f"Hi my name is {self.name} with ID {self.id}"
+
+# {'name': "Akshay", 'id': 1}
 
 
 pArray = [Person("Akshay", 0), Person("Mahesh", 1), Person('Sourav', 2)]
@@ -162,7 +165,7 @@ arr4 = [i if i % 2 == 0 else i * 2 for i in range(0, 11)]
 
 dic3 = {}
 dic3 = {'name': "Akshay", 'id': 23, 'email': 'abc@outlook.com'}
-print(dic3['name'])
+# print(dic3['name'])
 dic3['name'] = 'Mahesh'  # ? create or modify the value
 del dic3['name']  # ? delete the value
 
@@ -173,13 +176,13 @@ for item in pArray:
     dic1[item.id] = item
 
 dic2 = {item.id: item for item in pArray}
-print(dic2)
+# print(dic2)
 
 # ? Conditional ?
 dic2 = {item.id: item for item in pArray if item.id % 2 == 0}
 
 # ! 1
-# * Function whci takes Person as an object and and stores it inside of a array def addPerson(person): -> arr.append(person) ? condtion is that there should not be
+# * make a Function which takes {Person} as an object and stores it inside of an array. def addPerson(person): -> arr.append(person) ? condtion is that there should not be
 # * any person persent inside of that array with the same ID as of the person passed to it or else return a dictionary with key message that says sorry
 
 # ! 2
@@ -188,3 +191,68 @@ dic2 = {item.id: item for item in pArray if item.id % 2 == 0}
 
 # ! 3
 # * it should accept the user ID and return the number of times this user ID has been accessed
+
+tempArray = []
+accessMemory = {}
+
+
+def addPerson(person: Person):
+    # TODO : simply add person to a array ?
+    # TODO : Search for all the objects inside of tempArray which has ID same as that of person argument
+    # TODO : if you find anything above line? then return a dictionary {'message': 'sorry'}
+    # TODO : else just append the person object inside of the tempArray
+    tempRes = next(filter(lambda item: item.id ==
+                   person.id, tempArray), None)
+    if tempRes is None:
+        tempArray.append(person)
+        return {'message': 'Done'}
+    else:
+        return {'message': 'sorry'}
+
+
+def getPerson(personId: int):
+    # TODO : simply search inside of tempArray for object that has field _id = personId
+    # TODO : make a dictionary of that object with corresponding fields and their values as key and value in that dictionary use dictionary comprehension for this
+    # TODO : increment or initialise the value inside access memory dict
+    # TODO : return what is done above
+    tempRes = next(filter(lambda item: item.id == personId, tempArray), None)
+    if tempRes is not None:
+        res = accessMemory.get(personId, None)
+        if res is None:
+            accessMemory[personId] = 1
+        else:
+            accessMemory[personId] += 1
+        return tempRes
+    else:
+        return {'message': 'sorry'}
+
+
+def getAccessCount(personId: int):
+    # TODO : simply return the account inside of access memory
+    return accessMemory.get(personId, {'message': 'sorry'})
+
+
+# * Done with addtion
+print("Adding ", addPerson(Person("Akshay", 1)))
+print("Adding ", addPerson(Person("Mahesh", 2)))
+print("Adding ", addPerson(Person("Ramesh", 2)))
+print("Adding ", addPerson(Person("Agatha", 3)))
+print("Adding ", addPerson(Person("Saurav", 4)))
+print("Adding ", addPerson(Person("Jahanvi", 5)))
+
+# *  now we'll fetch data
+print(getPerson(2))
+print(getPerson(2))
+print(getPerson(3))
+print(getPerson(4))
+print(getPerson(4))
+print(getPerson(1))
+print(getPerson(1))
+print(getPerson(1))
+print(getPerson(1))
+
+# * check access
+print(f" Akshay : {getAccessCount(1)} ")
+print(f" Mahesh : {getAccessCount(2)} ")
+print(f" Agatha : {getAccessCount(3)} ")
+print(f" Saurav : {getAccessCount(4)} ")
