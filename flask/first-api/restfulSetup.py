@@ -43,12 +43,15 @@ class StoreAPI(Resource):
         return res.convertToDict() if res is not None else {'message': 'Not found'}
 
     def post(self, storeId):
-        body = request.get_json()
-        for i in range(len(stores)):
-            if stores[i].id == storeId:
-                stores[i].name = body['name']
-                return {'message', 'Done'}
-        return {'message': 'failed'}
+        try:
+            body = request.get_json()
+            for i in range(len(stores)):
+                if stores[i].id == storeId:
+                    stores[i].name = body['name']
+                    return {'message': 'Done'}
+            return {'message': 'failed'}
+        except:
+            print("Error Occured ")
 
     def put(self, storeId):
         body = request.get_json()
