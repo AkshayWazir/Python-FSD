@@ -40,7 +40,10 @@ class Store():
 class StoreAPI(Resource):
     def get(self, storeId):
         res = next(filter(lambda x: x.id == storeId, stores), None)
-        return res.convertToDict() if res is not None else {'message': 'Not found'}
+        if res is not None:
+            return res.convertToDict(), 200
+        else:
+            return {'message': 'Not found'}, 400
 
     def post(self, storeId):
         try:
@@ -56,7 +59,7 @@ class StoreAPI(Resource):
     def put(self, storeId):
         body = request.get_json()
         stores.append(Store(body['name'], storeId))
-        return {'message': 'Done'}
+        return {'message': 'Done'}, 201
 
     def delete(self, storeId):
         for i in range(len(stores)):
@@ -65,6 +68,11 @@ class StoreAPI(Resource):
                 return {'message': 'Done'}
         return {'message': 'failed'}
 
+
+# * now make an Api for geting an item from a store
+# * put a new item to a store
+# * modify price of an item in the store
+# * remove an item from the store
 
 api.add_resource(StoreAPI, '/store/<int:storeId>')
 
