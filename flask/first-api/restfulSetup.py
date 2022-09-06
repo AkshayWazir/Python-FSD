@@ -46,4 +46,7 @@ class StoreAPI(Resource):
         pass
 
 
+api.add_resource(StoreAPI, '/store/<int:id>')
+
+
 app.run(debug=True, port=5000)
