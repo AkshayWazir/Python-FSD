@@ -13,6 +13,9 @@ class Item():
         self.name = name
         self.price = price
 
+    def convertToDict(self):
+        return self.items()
+
 
 class Store():
     def __init__(self, name: str, _id: int) -> None:
@@ -27,26 +30,37 @@ class Store():
         else:
             self.items.append(item)
 
+    def convertToDict(self):
+        return self.items()
+
 
 class StoreAPI(Resource):
-    def get(self, id):
-        # TODO fetch the store here
-        pass
+    def get(self, storeId):
+        res = next(filter(lambda x: x.id == storeId), None)
+        return res.convertToDict() if res is not None else {'message': 'Not found'}
 
-    def post(self, id):
-        # TODO modify store here
-        pass
+    def post(self, storeId):
+        body = request.get_json()
+        for i in range(len(stores)):
+            if stores[i].id == storeId:
+                stores[i].name = body['name']
+                return {'message', 'Done'}
+        return {'message': 'failed'}
 
-    def put(self, id):
-        # TODO Add a new store if it does not exists
-        pass
+    def put(self, storeId):
+        body = request.get_json()
+        stores.append(Store(body['name'], storeId))
+        return {'message': 'Done'}
 
-    def delete(self, id):
-        # TODO remove the existing store
-        pass
+    def delete(self, storeId):
+        for i in range(len(stores)):
+            if stores[i].id == storeId:
+                stores.pop(i)
+                return {'message': 'Done'}
+        return {'message': 'failed'}
 
 
-api.add_resource(StoreAPI, '/store/<int:id>')
+api.add_resource(StoreAPI, '/store/<int:storeId>')
 
 
 app.run(debug=True, port=5000)
