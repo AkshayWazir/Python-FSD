@@ -14,7 +14,7 @@ class Item():
         self.price = price
 
     def convertToDict(self):
-        return self.items()
+        return {'id': self.id, 'name': self.name, 'price': self.price}
 
 
 class Store():
@@ -31,12 +31,15 @@ class Store():
             self.items.append(item)
 
     def convertToDict(self):
-        return self.items()
+        # return self.items()
+        res = {'name': self.name, 'id': self.id,
+               'items': [item.convertToDict() for item in self.items]}
+        return {'message': res}
 
 
 class StoreAPI(Resource):
     def get(self, storeId):
-        res = next(filter(lambda x: x.id == storeId), None)
+        res = next(filter(lambda x: x.id == storeId, stores), None)
         return res.convertToDict() if res is not None else {'message': 'Not found'}
 
     def post(self, storeId):
