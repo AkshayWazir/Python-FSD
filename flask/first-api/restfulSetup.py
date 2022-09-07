@@ -1,11 +1,15 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_restful import Resource, Api
 from flask_cors import CORS
+from flask_jwt_extended import get_jwt_identity, create_access_token, jwt_required, JWTManager
 
 
 app = Flask(__name__)
+app.config["JWT_SECRET_KEY"] = 'akshay'
 api = Api(app)
 CORS(app)
+
+jwt = JWTManager(app)
 
 stores = []
 
@@ -68,12 +72,29 @@ class StoreAPI(Resource):
         return {'message': 'failed'}
 
 
+class UserAuth(Resource):
+    def post(self):
+        username = request.json.get("username", None)
+        password = request.json.get("password", None)
+        # TODO : authenticate User
+        token = create_access_token(
+            identity={'username': username})
+        return {"token": token}
+
+    @jwt_required()
+    def put(self):
+        username = get_jwt_identity()
+        return {"message": username}
+
+
 # * now make an Api for geting an item from a store
 # * put a new item to a store
 # * modify price of an item in the store
 # * remove an item from the store
 
+
 api.add_resource(StoreAPI, '/store/<int:storeId>')
+api.add_resource(UserAuth, '/user')
 
 
 app.run(debug=True, port=5000)

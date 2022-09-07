@@ -1,5 +1,3 @@
-const axios = require("axios");
-
 export default function MakeRequest(url) {
   let payload = {
     method: "",
@@ -18,8 +16,8 @@ export default function MakeRequest(url) {
           : url;
 
         payload.url = finalUrl;
-        payload.method = "get";
-        let result = await axios(payload);
+        payload.method = "GET";
+        let result = await fetch(payload.url, payload);
         return result.data;
       } catch (error) {
         console.log(error);
@@ -28,7 +26,9 @@ export default function MakeRequest(url) {
     },
     post: async (body) => {
       try {
-        let result = await axios.post(url, body);
+        payload.body = JSON.stringify(body);
+        payload.method = "POST";
+        let result = await fetch(url, payload);
         if (result.code >= 200 && result.code <= 299) {
           return result.data;
         }
@@ -52,7 +52,8 @@ export default function MakeRequest(url) {
     },
     delete: async (body) => {
       try {
-        let result = await axios.delete(url);
+        payload.method = "DELETE";
+        let result = await fetch(url, payload);
         if (result.code >= 200 && result.code <= 299) {
           return result.data;
         }
