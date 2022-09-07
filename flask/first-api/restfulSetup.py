@@ -39,11 +39,7 @@ class Store():
 
 class StoreAPI(Resource):
     def get(self, storeId):
-        res = next(filter(lambda x: x.id == storeId, stores), None)
-        if res is not None:
-            return res.convertToDict(), 200
-        else:
-            return {'message': 'Not found'}, 400
+        return {'data': [store.convertToDict() for store in stores]}, 200
 
     def post(self, storeId):
         try:
