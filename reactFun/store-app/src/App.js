@@ -1,17 +1,25 @@
 import React, { useEffect } from "react";
-import MakeRequest from "./utils/apiHandler";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import AppRoutes from "./routes";
 
 function App() {
-  async function apiCall() {
-    await MakeRequest("http://127.0.0.1:5000/store/1").put({ name: "Sharma Store" });
-    await MakeRequest("http://127.0.0.1:5000/store/1").get();
-  }
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    apiCall();
+    const token = localStorage.getItem("token");
+    if (location.pathname !== "/" && !token) {
+      navigate("/loginPage");
+    }
   }, []);
 
-  return <div className="App"></div>;
+  return (
+    <Routes>
+      {AppRoutes.map((appRoute) => (
+        <Route path={appRoute.path} element={appRoute.comp} />
+      ))}
+    </Routes>
+  );
 }
 
 export default App;
