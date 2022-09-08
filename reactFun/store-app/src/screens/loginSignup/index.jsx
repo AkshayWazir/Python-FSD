@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import "./styles.css";
+import { sigupUserApiCall } from "./apis";
 
 export default function LoginSignupPage(props) {
   const [data, setData] = useState({ username: "", password: "" });
+  const [status, setStatus] = useState("");
 
   async function loginUser() {}
 
-  async function signupUser() {}
+  async function signupUser() {
+    let res = await sigupUserApiCall(data);
+    if (res.state) {
+      setStatus("Accound Created");
+      setData({ username: "", password: "" });
+    } else {
+      setStatus("Failed to create Account, ", res.data);
+    }
+  }
 
   return (
     <div className="login-container">
@@ -30,6 +40,7 @@ export default function LoginSignupPage(props) {
           Login
         </span>
       </div>
+      {status.length > 0 && <span>{status}</span>}
     </div>
   );
 }

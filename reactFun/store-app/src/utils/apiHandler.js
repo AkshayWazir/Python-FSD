@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export default function MakeRequest(url) {
   let payload = {
     method: "",
@@ -15,10 +17,7 @@ export default function MakeRequest(url) {
               .join("&")}`
           : url;
 
-        payload.url = finalUrl;
-        payload.method = "GET";
-        let result = await fetch(payload.url, payload);
-        return result.data;
+        return await axios.get(finalUrl);
       } catch (error) {
         console.log(error);
         return { message: "Something went wrong", code: 600 };
@@ -26,12 +25,7 @@ export default function MakeRequest(url) {
     },
     post: async (body) => {
       try {
-        payload.body = JSON.stringify(body);
-        payload.method = "POST";
-        let result = await fetch(url, payload);
-        if (result.code >= 200 && result.code <= 299) {
-          return result.data;
-        }
+        return await axios.post(url, body);
       } catch (error) {
         console.log(error);
         return { message: "Something went wrong", code: 600 };
@@ -39,24 +33,15 @@ export default function MakeRequest(url) {
     },
     put: async (body) => {
       try {
-        payload.body = JSON.stringify(body);
-        payload.method = "PUT";
-        let result = await fetch(url, payload);
-        if (result.code >= 200 && result.code <= 299) {
-          return result.data;
-        }
+        return await axios.put(url, body);
       } catch (error) {
         console.log(error);
-        return { message: "Something went wrong", code: 600 };
+        return { message: error.message, code: 600 };
       }
     },
     delete: async (body) => {
       try {
-        payload.method = "DELETE";
-        let result = await fetch(url, payload);
-        if (result.code >= 200 && result.code <= 299) {
-          return result.data;
-        }
+        return await axios.delete(url);
       } catch (error) {
         console.log(error);
         return { message: "Something went wrong", code: 600 };
