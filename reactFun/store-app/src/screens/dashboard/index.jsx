@@ -1,6 +1,11 @@
 import React from "react";
 import "./styles.css";
+import APICalls from "./apis";
 
 export default function Dashboard(props) {
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <span onClick={() => APICalls.getAllStores()}>Call API</span>
+    </div>
+  );
 }

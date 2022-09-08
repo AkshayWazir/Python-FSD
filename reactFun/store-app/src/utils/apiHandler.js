@@ -1,11 +1,10 @@
 import axios from "axios";
 
 export default function MakeRequest(url) {
-  let payload = {
-    method: "",
-    url: url,
-    data: {},
-    headers: { "Access-Control-Allow-Origin": "*", "content-type": "application/json" },
+  const header = {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+    "Access-Control-Allow-Origin": "*",
+    "content-type": "application/json",
   };
 
   const requests = {
@@ -17,7 +16,7 @@ export default function MakeRequest(url) {
               .join("&")}`
           : url;
 
-        return await axios.get(finalUrl);
+        return await axios.get(finalUrl, { headers: header });
       } catch (error) {
         console.log(error);
         return { message: "Something went wrong", code: 600 };
@@ -25,7 +24,7 @@ export default function MakeRequest(url) {
     },
     post: async (body) => {
       try {
-        return await axios.post(url, body);
+        return await axios.post(url, body, { headers: header });
       } catch (error) {
         console.log(error);
         return { message: "Something went wrong", code: 600 };
@@ -33,7 +32,7 @@ export default function MakeRequest(url) {
     },
     put: async (body) => {
       try {
-        return await axios.put(url, body);
+        return await axios.put(url, body, { headers: header });
       } catch (error) {
         console.log(error);
         return { message: error.message, code: 600 };
@@ -41,7 +40,7 @@ export default function MakeRequest(url) {
     },
     delete: async (body) => {
       try {
-        return await axios.delete(url);
+        return await axios.delete(url, { headers: header });
       } catch (error) {
         console.log(error);
         return { message: "Something went wrong", code: 600 };

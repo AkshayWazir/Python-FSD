@@ -46,12 +46,15 @@ class Store():
 
 
 class StoreAPI(Resource):
-    def get(self, storeId):
+    @jwt_required()
+    def get(self):
         return {'data': [store.convertToDict() for store in stores]}, 200
 
-    def post(self, storeId):
+    @jwt_required()
+    def post(self):
         try:
             body = request.get_json()
+            storeId = request.json.get('storeId')
             for i in range(len(stores)):
                 if stores[i].id == storeId:
                     stores[i].name = body['name']
@@ -60,12 +63,16 @@ class StoreAPI(Resource):
         except:
             print("Error Occured ")
 
-    def put(self, storeId):
+    @jwt_required()
+    def put(self):
         body = request.get_json()
+        storeId = request.json.get("storeId")
         stores.append(Store(body['name'], storeId))
         return {'message': 'Done'}, 201
 
-    def delete(self, storeId):
+    @jwt_required()
+    def delete(self):
+        storeId = request.json.get("storeId")
         for i in range(len(stores)):
             if stores[i].id == storeId:
                 stores.pop(i)
@@ -107,7 +114,7 @@ class UserAuth(Resource):
 # * remove an item from the store
 
 
-api.add_resource(StoreAPI, '/store/<int:storeId>')
+api.add_resource(StoreAPI, '/store')
 api.add_resource(UserAuth, '/user')
 
 
