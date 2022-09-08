@@ -12,6 +12,7 @@ CORS(app)
 jwt = JWTManager(app)
 
 stores = []
+users = []
 
 
 class Item():
@@ -77,14 +78,27 @@ class UserAuth(Resource):
         username = request.json.get("username", None)
         password = request.json.get("password", None)
         # TODO : authenticate User
-        token = create_access_token(
-            identity={'username': username})
-        return {"token": token}
+        exists = next(filter(lambda x: x['username'] == username, users), None)
+        if exists is not None:
+            if exists['username'] == username and exists['password'] == password:
+                token = create_access_token(
+                    identity={'username': username})
+                return {"data": token}, 200
+            else:
+                return {"message": "Invalid Password"}, 400
+        else:
+            return {"message": "user not found"}, 400
 
-    @jwt_required()
     def put(self):
-        username = get_jwt_identity()
-        return {"message": username}
+        username = request.json.get("username", None)
+        password = request.json.get("password", None)
+        exists = next(filter(lambda x: x['username'] == username, users), None)
+        if exists is not None:
+            return {"message": "Similar user already exists"}, 400
+        users.append({"username": username, "password": password})
+        return {'message': "done"}
+        # username = get_jwt_identity()
+        # return {"message": username}
 
 
 # * now make an Api for geting an item from a store
