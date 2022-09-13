@@ -2,13 +2,14 @@ import mysql.connector
 
 
 class DbSync():
-    myDb = mysql.connector(host="localhost", user="root", passwd="password")
-    dbCursor = myDb.cursor()
 
     @classmethod
     def create(cls):
-        cls.dbCursor.execute("CREATE DATABASE sql_clothing")
-        cls.dbCursor.execute(
+        myDb = mysql.connector(
+            host="localhost", user="root", passwd="password")
+        dbCursor = myDb.cursor()
+        dbCursor.execute("CREATE DATABASE sql_clothing")
+        dbCursor.execute(
             "CREATE TABLE sql_customers (customerId int AUTO_INCREMENT, fullName VARCHAR(50) , address VARCHAR(100) , number VARCHAR(10), prime BIT)s")
 
     @classmethod

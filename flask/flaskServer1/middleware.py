@@ -1,4 +1,4 @@
-from flaskServer1.controller import DbSync
+from controller import DbSync
 from flask_restful import Resource, Api
 
 
