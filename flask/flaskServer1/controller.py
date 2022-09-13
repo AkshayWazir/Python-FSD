@@ -2,27 +2,30 @@ import mysql.connector
 
 
 class DbSync():
+    def __init__(self) -> None:
+        self.db = mysql.connector.connect(
+            host="localhost", user="root", passwd="password", database="sql_clothing")
+        self.cursor = self.db.cursor()
 
-    @classmethod
-    def create(cls):
-        myDb = mysql.connector(
-            host="localhost", user="root", passwd="password")
-        dbCursor = myDb.cursor()
-        dbCursor.execute("CREATE DATABASE sql_clothing")
-        dbCursor.execute(
-            "CREATE TABLE sql_customers (customerId int AUTO_INCREMENT, fullName VARCHAR(50) , address VARCHAR(100) , number VARCHAR(10), prime BIT)s")
-
-    @classmethod
-    def update(cls):
-        # TODO : update dB and tables over here
-        pass
+    def create(self):
+        # self.cursor.execute("CREATE TABLE sql_customers (customerId int NOT NULL AUTO_INCREMENT, fullName VARCHAR(50) , address VARCHAR(100) , number VARCHAR(10), prime BIT, PRIMARY KEY (customerId));")
+        self.cursor.execute(
+            "CREATE TABLE sql_customers (customerId int NOT NULL AUTO_INCREMENT, fullName VARCHAR(50) , address VARCHAR(100) , number VARCHAR(10), prime BIT, PRIMARY KEY (customerId));")
 
 
 class CustomersCont():
-    @classmethod
-    def create(cls):
-        # TODO : Create SQL command to make a new customer
-        pass
+    def __init__(self) -> None:
+        self.db = mysql.connector.connect(
+            host="localhost", user="root", passwd="password", database="sql_clothing")
+        self.cursor = self.db.cursor()
+
+    def addCloth(self, name: str, address: str, number: str, prime: bool):
+        insertQuery = "INSERT INTO sql_customers (fullName, address, number, prime) VALUES (%s , %s , %s, %s)"
+        vals = (name, address, number, prime)
+        self.cursor.execute(insertQuery, vals)
+        self.db.commit()
+        self.db.close()
+        return True
 
     @classmethod
     def updateNumber(cls):
