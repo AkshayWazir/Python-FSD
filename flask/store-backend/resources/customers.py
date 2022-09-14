@@ -5,17 +5,16 @@ from db import db
 
 
 class Customer(Resource):
-    def put(self):
-        print("Reached Request : Executing")
+    def put(self, custId):
         requestBody = request.json
         newCustomer = Customers(fullName=requestBody.get(
             'name', None), address=requestBody.get('address', None), number=requestBody.get('number', None), prime=requestBody.get('prime', None))
         db.session.add(newCustomer)
         db.session.commit()
 
-    def post(self):
-        # TODO : recieve login user request and pass it down to model
-        pass
+    def get(self, custId):
+        result = Customers.query.filter_by(customerId=custId).first()
+        return result.response()
 
 
 class UpdateUser(Resource):
