@@ -1,6 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from db import db
 
+# ? step: 4
+# * create your table represntation like one below
+
 
 class Customers(db.Model):
     __tablename__ = "sql_customers"
