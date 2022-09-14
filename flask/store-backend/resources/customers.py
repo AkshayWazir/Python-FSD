@@ -27,8 +27,6 @@ class FetchAllCustomers(Resource):
         temp = {"res": temp}
         return temp
 
-# ? Make a API call that gets all the customers
-
 
 class UpdateUser(Resource):
     def post(self):
