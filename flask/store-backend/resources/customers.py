@@ -1,3 +1,4 @@
+from cmath import log
 from flask import request
 from flask_restful import Resource
 from model.customerTable import Customers
@@ -14,10 +15,21 @@ class Customer(Resource):
 
     def get(self, custId):
         result = Customers.query.filter_by(customerId=custId).first()
-        return result.response()
+        return result.convertRes()
+
+
+class FetchAllCustomers(Resource):
+    def get(self):
+        result = Customers.query.all()
+        temp = []
+        for ele in result:
+            temp.append(ele.convertRes())
+        temp = {"res": temp}
+        return temp
+
+# ? Make a API call that gets all the customers
 
 
 class UpdateUser(Resource):
     def post(self):
-        # TODO Update recieved parameters
         pass
