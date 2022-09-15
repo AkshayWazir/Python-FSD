@@ -3,12 +3,12 @@ from db import db
 
 class OrdersTable(db.Model):
     __tablename__ = "sql_orders"
-    order_id = db.Column(db.Integer, primarykey=True,
-                         nullable=False, backref="sql_orders")
+    order_id = db.Column(db.Integer, primary_key=True,
+                         nullable=False)
     shipping_id = db.Column(db.Integer, nullable=False)
     products = db.Column(db.Text, nullable=False)
     customer_id = db.Column(db.Integer, nullable=False)
-    shippings = db.realtionship("sql_shipping")
+    shippings = db.relationship("sql_shipping")
 
     def __init__(self, shipping, products, custId) -> None:
         super().__init__()

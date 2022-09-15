@@ -23,3 +23,7 @@ class ShippingTable(db.Model):
 
     def json(self):
         return {"id": self.ship_id, "orderId": self.order_id}
+
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()

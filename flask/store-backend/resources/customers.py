@@ -26,8 +26,3 @@ class FetchAllCustomers(Resource):
             temp.append(ele.convertRes())
         temp = {"res": temp}
         return temp
-
-
-class UpdateUser(Resource):
-    def post(self):
-        pass
