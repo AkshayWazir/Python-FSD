@@ -23,3 +23,9 @@ test("Testing Button func", () => {
   const header_comp = screen.getByRole("button", { name: "Cats" });
   expect(header_comp).toBeInTheDocument();
 });
+
+test("Testing Button func title", () => {
+  render(<NewHeader label="Hello World" />);
+  const header_comp = screen.getByTitle("unique-comp");
+  expect(header_comp).toBeInTheDocument();
+});
