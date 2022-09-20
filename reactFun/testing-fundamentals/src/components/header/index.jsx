@@ -4,3 +4,7 @@ import "./styles.css";
 export default function Header({ title }) {
   return <h1 className="appication_headers">{title}</h1>;
 }
+
+export function NewHeader({ label }) {
+  return <button>{label}</button>;
+}
