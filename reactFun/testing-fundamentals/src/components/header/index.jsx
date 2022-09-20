@@ -6,5 +6,10 @@ export default function Header({ title }) {
 }
 
 export function NewHeader({ label }) {
-  return <button>{label}</button>;
+  return (
+    <>
+      <button className="btn">{label}</button>
+      <button className="btn">Cats</button>
+    </>
+  );
 }
