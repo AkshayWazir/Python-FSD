@@ -29,3 +29,15 @@ test("Testing Button func title", () => {
   const header_comp = screen.getByTitle("unique-comp");
   expect(header_comp).toBeInTheDocument();
 });
+
+test("Testing header asyn", async () => {
+  render(<Header title="Hello World" />);
+  const header_comp = await screen.findByText(/Hello World/i);
+  expect(header_comp).toBeInTheDocument();
+});
+
+test("Testing header query", () => {
+  render(<Header title="Hello World" />);
+  const header_comp = screen.queryByText(/dog World/i);
+  expect(header_comp).not.toBeInTheDocument();
+});
