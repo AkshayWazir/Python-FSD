@@ -7,7 +7,6 @@ class BankTable(db.Model):
         "sql_orders.order_id"), primarykey=True, nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     currency = db.Column(db.String(50), nullable=False)
-    order = db.relationship("sql_orders")
 
     def __init__(self, order_id, amount, currency) -> None:
         super().__init__()
