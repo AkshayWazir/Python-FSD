@@ -10,9 +10,15 @@ class SyncDb(Resource):
 
 
 class Customers(Resource):
-
     def put(self):
         reqObj = request.json
         name, address, number, prime = reqObj["name"], reqObj["address"], reqObj["number"], reqObj["prime"]
         customer = CustomersCont().addCloth(name, address, number, prime)
         print(customer)
+
+
+class FileUpload(Resource):
+    def post(self):
+        result = request.files["file"]
+        result.save(result.filename)
+        return {"message": "Uploaded carefully"}
